@@ -53,7 +53,7 @@ class Home(ssis.Frame):
         
 
         Button1 =ssis.Button(self, text="ENTER",font=("Palatino roman",25,"bold"),bd=10, width = 10,bg="#cdc9c9",fg="BLACK",command=lambda: controller.ShowFrame(Student))
-        Button1.place(x=550,y=500)
+        Button1.place(x=550,y=370)
         
 
 #________COURSE FUNCTIONS________#
@@ -259,7 +259,7 @@ class Student(ssis.Frame):
             conn = sqlite3.connect("StudentDatabase")
             cur = conn.cursor()
             cur.execute("PRAGMA foreign_keys = ON")
-            cur.execute("CREATE TABLE IF NOT EXISTS studdatabase (Student_ID TEXT PRIMARY KEY, Student_Name TEXT, Course_Code TEXT, \
+            cur.execute("CREATE TABLE IF NOT EXISTS studdatabase (Student_ID INTEGER PRIMARY KEY, Student_Name TEXT, Course_Code TEXT, \
                       Student_YearLevel TEXT, Student_Gender TEXT, \
                       FOREIGN KEY(Course_Code) REFERENCES courses(Course_Code) ON UPDATE CASCADE)") 
             conn.commit() 
@@ -456,7 +456,7 @@ class Student(ssis.Frame):
         self.lblStudentYearLevel.place(x=10,y=215)
         ttk.Style().layout('combostyleO.TCombobox')
         ttk.Style().configure('combostyleO.TCombobox', selectforeground='black', selectbackground='white',  foreground='black')
-        self.txtStudentYearLevel = ttk.Combobox(InfoFrame,value=["First Year", "Second Year", "Third Year", "Fourth Year"],state="readonly", font=("Times new roman", 16), textvariable=Student_YearLevel,width=25, style="combostyleO.TCombobox")
+        self.txtStudentYearLevel = ttk.Combobox(InfoFrame,value=["1", "2", "3", "4"],state="readonly", font=("Times new roman", 16), textvariable=Student_YearLevel,width=25, style="combostyleO.TCombobox")
         self.txtStudentYearLevel.place(x=160,y=220)
         
         self.lblStudentGender = Label(InfoFrame, font=("Source code", 16,"bold"), text="GENDER:", padx=5, pady=5, bg = "WHITE", fg = "BLACK",  width = 10)
@@ -514,10 +514,3 @@ class Student(ssis.Frame):
 app = AppDatabase()
 app.geometry("1650x650+0+0")
 app.mainloop()
-
-        
-
-       
-
-
-       
